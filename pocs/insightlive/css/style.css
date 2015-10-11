@@ -1,0 +1,191 @@
+
+body{
+
+ background-image: url("../img/sameera.jpg");
+background-repeat: no-repeat;
+    background-color: #EBE9EA;
+}
+
+
+#main_right{
+
+ margin-top: 56px;
+ background-color: #555555;
+/* z-index: 2;*/
+
+}
+#main_left{
+
+ margin-top: 50px;
+/* background-color: red;*/
+/*z-index: 2;*/
+
+}
+
+#l_top{
+    
+    margin-top: 70px;
+    margin-left: 10px;
+}
+#l-bottom-l{
+
+ margin-top: 10px;
+ margin-left: 12px;
+    float: left;
+
+}#l-bottom-r{
+
+ margin-top: 10px;
+ margin-left: 67px;
+
+}
+.img-responsive1{
+    margin-bottom: 8px;
+ margin-left: 10px;
+
+}
+.img-responsive2{
+ margin-top: 10px;
+ margin-left: 10px;
+
+}
+#pan{
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    width: 180px;
+    height: 50px;
+    
+    background-color: transparent;
+    z-index: 20;
+
+}
+p{
+
+ margin-left: 15px;
+}
+.icon{
+padding: 5px;
+
+}
+body{
+    background-color:#ccc;
+
+}
+.close{
+    margin-top:0px;
+}
+.chat-block{
+    max-height:420px;
+    width:300px;
+    position: fixed;
+    bottom: 0%;
+    right: 1%;
+    z-index: 50;
+    border:1px solid #ccc;
+    border-radius:10px 10px 0px 0px;
+    background-color:#f4f4f4;
+}
+
+.msg_head{
+    height:40px;
+    background:#3498db;
+    padding:10px;
+    color:#fff;
+    border-radius:10px 10px 0px 0px;
+    border:0px solid #fff;
+
+}
+.msg_footer{
+    z-index: 52;
+
+}
+
+.msg_body{
+
+    height:305px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
+
+}
+.msg_input {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 5px;
+    border-top: 1px solid #ddd;
+
+}
+
+
+.msg_a{
+    position:relative;
+    background:#FDE4CE;
+    padding:10px;
+    min-height:10px;
+    border-radius:5px;
+    max-width:220px;
+    margin:5px 0px 5px 20px;
+
+
+
+}
+.msg_a:before{
+    content:"";
+    position:absolute;
+    width:0px;
+    height:0px;
+    border: 10px solid;
+    border-color: transparent #FDE4CE transparent transparent;
+    left:-20px;
+    top:7px;
+
+}
+
+
+.msg_b{
+    background:#DDE4CE;
+    padding:10px;
+    min-height:15px;
+    margin-bottom:5px;
+    position:relative;
+    margin-left:10px;
+    border-radius:5px;
+    max-width:250px;
+    margin:5px 0px 5px 20px;
+
+
+
+
+}
+.msg_b:after{
+    content:"";
+    position:absolute;
+    width:0px;
+    height:0px;
+    border: 10px solid;
+    border-color: transparent transparent transparent #DDE4CE;
+    right:-20px;
+    top:7px;
+}
+#notification{
+    padding:4px;
+    background-color:#eee;
+    font-size:12px;
+    border-top:1px dotted #ddd;
+}
+#mark{
+    width:20px;
+    height:20px;
+    border-radius:50px;
+    background-color:#4682B4;
+    float:right;
+    border:2px solid #222;
+}
+#mark:hover{
+
+    background-color:#00BFFF;
+    border:2px solid #fff;
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ERA Insight Live</title>
+
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <p id="pan">
+          <p>
+          <!--img src="img/green.png" class="icon"-->   <!--img src="img/blue.png"  class="icon"-->   <!--img src="img/yellow.png"  class="icon"-->
+            <div class="chat-block">
+
+                <div class="msg_head">CHAT WITH ALICIA
+                    <div class="close"><p id="mark"><p></div>
+                </div>
+                <div class="msg_wrap">
+                    <div class="msg_body">
+                        <div>
+
+                            <div class="msg_a" hidden="true"></div>
+                        </div>
+
+                        <div>
+                            <div class="msg_b" hidden="true"></div>
+
+                        </div>
+
+                        <div class="msg_push">
+                            <p class="enter-msg"> </p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="notification" >Type your message here</div>
+                <div class="msg_footer"><textarea class="msg_input" rows="1" id="user_msg"></textarea></div>
+            </div>
+            </p>
+        </div>
+    </div>
+        
+        <div class="col-md-9" id="main_left">
+            <!--      left side top full-col     -->
+            <div class="row">
+                <div class="col-md-6" id="l_top">
+                     <img src="img/11.JPG" />
+                </div>
+               
+            </div>
+            <!--      left side bottom col2     -->
+            <div class="row">
+                <div class="col-md-5" id="l-bottom-l">
+                       <img src="img/leaderboard.JPG" >
+                </div>
+
+                <div class="col-md-6" id="l-bottom-r">
+                    <div class="row">
+                         <img src="img/13.JPG"  class="img-responsive1 img-responsive">
+                    </div>
+                    <div class="row">
+                         <img src="img/14.JPG"  class="img-responsive1 img-responsive">
+                    </div>
+                    <div class="row">
+                         <img src="img/15.JPG"  class="img-responsive1 img-responsive">
+                    </div>
+                
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3" id="main_right">
+            <div class="row">
+                <img src="img/21.JPG"  class="img-responsive2 img-responsive">
+            </div>
+            <div class="row">
+                 <img src="img/22.JPG"  class="img-responsive2 img-responsive">
+            </div>
+            <div class="row">
+                 <img src="img/23.JPG"  class="img-responsive2 img-responsive">
+            </div>
+            <div class="row">
+                 <img src="img/22.JPG"  class="img-responsive2 img-responsive">
+            </div>
+            <div class="row">
+                 <img src="img/21.JPG"  class="img-responsive2 img-responsive">
+            </div>
+            <div class="row">
+                 <img src="img/23.JPG"  class="img-responsive2 img-responsive" >
+            </div>
+            
+        </div>
+    <script>
+        $(document).ready(function(){
+            var $divView = $('div.chat-block');
+
+            $(".close").click(function(){
+
+                /*$(".msg_head").css("color", "white");*/
+                $('div.chat-block').animate({
+                    height: (($divView.height() <300)? innerHeight  : "40px")
+                }, 1000);
+                return false;
+            });
+            /*push  the  new chat content in to body*/
+            $('#user_msg').keypress(
+
+                    function(e){
+                        if (e.keyCode == 13) {
+                            var msg = $(this).val();
+                            $(this).val('');
+                            if( msg != "" ){
+                                $('<div class="msg_a">' + msg + '</div>').insertBefore('.enter-msg');
+                                $('.msg_body').scrollTop($('.msg_body')[0].scrollHeight);
+                                $.ajax({
+                                    type: 'POST',
+                                    //url:'http://localhost/Program-O/chatbot/conversation_start.php',
+                                    url:'http://alicia.rdeshapriya.com/chatbot/conversation_start.php',
+                                    dataType: "json",
+                                    ContentType: "application/json",
+                                    data:{"say" : msg},
+                                    success: function (data) {
+                                        jsonString = JSON.stringify(data);
+                                        var response = JSON.parse(jsonString);
+                                        <!-- console.log(response); -->
+
+                                        setTimeout(function(){
+                                            $('<div class="msg_b">' + response.botsay + '</div>').insertBefore('.enter-msg');
+                                            $('.msg_body').scrollTop($('.msg_body')[0].scrollHeight);
+                                        }, 1500 );
+                                    },
+                                    error: function (data) {
+                                        alert(data);
+                                        console.log("error");
+                                    }
+                                });	  <!-- end ajax -->
+
+                            }else{
+                                alert("Enter your message");
+                            }
+
+
+                        }
+                    });
+
+            $("textarea").keyup(function(){
+                var inf = $("textarea").val();
+                if( inf != "" ){
+                    $("textarea").css("background-color", "#fff");
+                    $("#notification").text("Type your message here");
+                }
+
+            });
+
+            /*response message*/
+            $('#resdata').keypress(
+                    function(e){
+                        if (e.keyCode == 13) {
+
+                            var msg = $("#resdata").val();
+                            $('<div class="msg_b">' + msg + '</div>').insertBefore('.enter-msg');
+
+
+                        }
+                    });
+
+            $("#res").click(function(){
+                var msg = $("#resdata").val();
+                $('<div class="msg_b">' + msg + '</div>').insertBefore('.enter-msg');
+            });
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
