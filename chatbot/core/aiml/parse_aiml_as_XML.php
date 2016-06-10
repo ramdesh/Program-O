@@ -717,7 +717,20 @@
           runDebug(__FILE__, __FUNCTION__, __LINE__, 'Something went wrong with parsing the CONDITION tag. Returning the error response.', 1);
           return $error_response;
       }
-      $pick = (normalize_text($condition_value) == normalize_text($test_value)) ? $element : '';
+        
+      $condition_array = explode("|",$condition_value);
+      runDebug(__FILE__, __FUNCTION__, __LINE__, 'Checking multiple values for condition: ' . print_r($condition_array, true), 1);
+      foreach($condition_array as $condition_value_exp) {       
+        if(normalize_text($condition_value_exp) == normalize_text($test_value)) {
+            $pick = $element;
+            break;
+        } else {
+            $pick = '';
+        }  
+      }
+      runDebug(__FILE__, __FUNCTION__, __LINE__, '[Condition] Matched value ' . $pick, 1);
+        
+      
     }
     elseif (array_key_exists('name', $attributesArray)) // this ~SHOULD~ just trigger if the NAME value is present, and ~NOT~ NAME and (VALUE|CONTAINS|EXISTS)
     {
